@@ -1,6 +1,10 @@
 {
     "1": {
-        "c-prog": {},
+        "c-prog": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        },
         "maths1": {
             "endsem": [
                 {
@@ -11,10 +15,23 @@
             "midsem": [],
             "quiz": []
         },
-        "physics": {}
+        "physics": {
+            "endsem": [
+                {
+                    "title": "physics-endsem-2025",
+                    "file": "pyqs/1/physics/endsem/physics-endsem-2025.pdf"
+                }
+            ],
+            "midsem": [],
+            "quizs": []
+        }
     },
     "2": {
-        "digital-electronics": {},
+        "digital-electronics": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        },
         "dsa": {
             "endsem": [
                 {
@@ -34,11 +51,27 @@
             "midsem": [],
             "quizs": []
         },
-        "python": {}
+        "python": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        }
     },
     "3": {
-        "dbms": {},
-        "discrete-structures": {},
-        "oop": {}
+        "dbms": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        },
+        "discrete-structures": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        },
+        "oop": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        }
     }
 }
