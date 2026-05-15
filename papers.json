@@ -1,0 +1,36 @@
+{
+    "semester1": {
+        "aem": {
+            "endsem": [
+                {
+                    "title": "aem-endsem-2025 - Pulkit Singh",
+                    "file": "pyqs/semester1/aem/endsem/aem-endsem-2025 - Pulkit Singh.pdf"
+                }
+            ],
+            "midsem": [],
+            "quiz": []
+        }
+    },
+    "semester2": {
+        "aem2": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        },
+        "dsa": {
+            "endsem": [
+                {
+                    "title": "dsa-endsem-2021",
+                    "file": "pyqs/semester2/dsa/endsem/dsa-endsem-2021.pdf"
+                },
+                {
+                    "title": "dsa-endsem-2022",
+                    "file": "pyqs/semester2/dsa/endsem/dsa-endsem-2022.pdf"
+                }
+            ],
+            "midsem": [],
+            "quizs": []
+        }
+    },
+    "semester3": {}
+}
