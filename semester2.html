@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester 2 - UPES PYQ Archive</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Shared Design System & Variables matching index.html */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-primary: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --back-btn-bg: rgba(255, 255, 255, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Background Accents */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            filter: blur(150px);
+            opacity: 0.12;
+            z-index: -1;
+        }
+        body::before { top: -50px; left: -50px; }
+        body::after { bottom: 100px; right: -50px; }
+
+        /* Container setup */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 40px 24px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header Navigation Styles */
+        header {
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Subject Vertical Stack Layout */
+        .subject-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            margin-bottom: 48px;
+        }
+
+        /* Modern Dark UI Cards */
+        .subject-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px 32px;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+
+        .subject-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .subject-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Minimalist action indicator arrow */
+        .arrow-icon {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            transform: translateX(0);
+        }
+
+        /* Hover animations and subtle outer glow */
+        .subject-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 25px -5px var(--accent-glow), 
+                        0 0 15px 1px var(--accent-glow);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .subject-card:hover .subject-info h3 {
+            color: #ffffff;
+        }
+
+        .subject-card:hover .arrow-icon {
+            color: var(--accent-primary);
+            transform: translateX(4px);
+        }
+
+        .subject-card:active {
+            transform: translateY(-1px);
+        }
+
+        /* Button Action Elements */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-back {
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            background-color: var(--back-btn-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-back:active {
+            transform: translateY(0);
+        }
+
+        /* Footer Element */
+        footer {
+            width: 100%;
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Layout Overrides */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.2rem; }
+            .subject-card {
+                padding: 20px 24px;
+                flex-direction: row; 
+            }
+            .subject-info h3 { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Semester Page Header -->
+        <header>
+            <h1>Semester 2</h1>
+            <p class="subtitle">Select a subject to view available question papers</p>
+        </header>
+
+        <!-- Subjects Container List -->
+        <main class="subject-container">
+            
+            <!-- Subject 1 -->
+            <div class="subject-card" data-subject="dsa">
+                <div class="subject-info">
+                    <h3>Data Structures and Algorithms (DSA)</h3>
+                    <p>Core Computing Foundations</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </div>
+
+            <!-- Subject 2 -->
+            <div class="subject-card" data-subject="python">
+                <div class="subject-info">
+                    <h3>Python Programming</h3>
+                    <p>Application Development Module</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </div>
+
+            <!-- Subject 3 -->
+            <div class="subject-card" data-subject="digital-electronics">
+                <div class="subject-info">
+                    <h3>Digital Electronics</h3>
+                    <p>Hardware & System Architecture</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </div>
+
+            <!-- Subject 4 -->
+            <div class="subject-card" data-subject="maths-2">
+                <div class="subject-info">
+                    <h3>Advanced Engineering Mathematics 2</h3>
+                    <p>Advanced Analytical Mathematics</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </div>
+
+        </main>
+
+        <!-- Global Action Row Element -->
+        <div class="btn-container">
+            <a href="index.html" class="btn-back">← Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Page Footer Element -->
+    <footer>
+        <p>Made for UPES Students</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    alert(`Fetching papers for ${card.querySelector('h3').innerText}...`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
