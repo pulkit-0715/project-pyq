@@ -289,11 +289,18 @@
                 gridContainer.appendChild(card);
             }
 
-            // Simple event triggers for UX actions
-            function handleSemesterClick(semesterNum) {
-                alert(`Loading question papers for Semester ${semesterNum}...`);
-                // Future integration: window.location.href = `/semesters/sem-${semesterNum}.html`;
-            }
+            // Consolidated navigation logic
+           function handleSemesterClick(semesterNum) {
+    if (semesterNum === 1) {
+        window.location.href = 'semester1.html'; 
+    } else if (semesterNum === 2) {
+        window.location.href = 'semester2.html';
+    } else if (semesterNum === 3) {
+        window.location.href = 'semester3.html';
+    } else {
+        alert(`Loading question papers for Semester ${semesterNum}...`);
+    }
+}
 
             document.getElementById('donateBtn').addEventListener('click', () => {
                 alert('Thank you for your support! Redirecting to donation page...');
