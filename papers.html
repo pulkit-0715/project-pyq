@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Papers - UPES PYQ Archive</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Include PDF.js Library via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
+    <style>
+        /* Shared Dark UI Design System */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-primary: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.25);
+            --back-btn-bg: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Background Backgrounds */
+        body::before, body::after {
+            content: ''; position: absolute; width: 350px; height: 350px; border-radius: 50%;
+            background: var(--accent-primary); filter: blur(160px); opacity: 0.1; z-index: -1;
+        }
+        body::before { top: -50px; left: -50px; }
+        body::after { bottom: 100px; right: -50px; }
+
+        .container {
+            width: 100%; max-width: 1200px; padding: 40px 24px; text-align: center;
+            flex-grow: 1; display: flex; flex-direction: column; justify-content: center;
+        }
+
+        header { margin-bottom: 40px; }
+
+        h1 {
+            font-size: 2.3rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle { font-size: 1rem; color: var(--text-secondary); }
+
+        /* Modern Horizontally Scrollable Carousel Layout */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 48px;
+        }
+
+        .papers-carousel {
+            display: flex;
+            gap: 24px;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 8px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--card-border) transparent;
+        }
+
+        /* Webkit custom scrollbar customization */
+        .papers-carousel::-webkit-scrollbar { height: 6px; }
+        .papers-carousel::-webkit-scrollbar-track { background: transparent; }
+        .papers-carousel::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 10px; }
+        .papers-carousel::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+        /* Modern PDF Card Graphic Previews */
+        .paper-card {
+            flex: 0 0 240px; /* Fixed card size constraint width for carousel structure */
+            height: 330px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-decoration: none;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+
+        /* Dark UI Overlay Layer */
+        .paper-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 40%, rgba(11, 15, 25, 0.2) 100%);
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        /* Text Bottom Container Placement */
+        .card-details {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            text-align: left;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .card-details h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .card-details span {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Interactive Dynamic Hover Glow Effects */
+        .paper-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent-primary);
+            box-shadow: 0 15px 35px -5px var(--accent-glow), 0 0 20px 2px rgba(59, 130, 246, 0.15);
+        }
+
+        .paper-card:hover::before {
+            background: linear-gradient(to top, rgba(11, 15, 25, 0.98) 0%, rgba(11, 15, 25, 0.4) 50%, rgba(11, 15, 25, 0.1) 100%);
+        }
+
+        .paper-card:hover .card-details {
+            transform: translateY(-2px);
+        }
+
+        /* Loading Spinner Placeholder State */
+        .loading-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            z-index: 0;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        /* Fallback Empty Element Card Design */
+        .no-data {
+            width: 100%;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            border: 1px dashed var(--card-border);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        /* Action Nav Elements Layout */
+        .btn-container { display: flex; justify-content: center; margin-top: 20px; }
+
+        .btn-back {
+            font-family: inherit; font-size: 0.95rem; font-weight: 600; padding: 12px 24px;
+            border-radius: 12px; background-color: var(--back-btn-bg); color: var(--text-primary);
+            border: 1px solid var(--card-border); cursor: pointer; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+
+        .btn-back:hover { background-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); border-color: var(--text-secondary); }
+
+        footer { width: 100%; padding: 24px; text-align: center; border-top: 1px solid var(--card-border); font-size: 0.9rem; color: var(--text-secondary); }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.8rem; }
+            .papers-carousel { gap: 16px; }
+            .paper-card { flex: 0 0 210px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 id="pageHeading">Loading Papers...</h1>
+            <p class="subtitle" id="pageSubtitle">Semester -- • --</p>
+        </header>
+
+        <!-- Carousel Frame Component -->
+        <div class="carousel-wrapper" id="carouselWrapper">
+            <main class="papers-carousel" id="papersCarousel">
+                <!-- Javascript will load custom document view blocks asynchronously -->
+            </main>
+        </div>
+
+        <div class="btn-container">
+            <a href="#" id="backBtn" class="btn-back">← Back to Categories</a>
+        </div>
+    </div>
+
+    <footer><p>Made for UPES Students</p></footer>
+
+    <!-- Hidden canvas configuration used on-the-fly inside script engine tasks -->
+    <canvas id="pdfRenderCanvas" style="display: none;"></canvas>
+
+    <script>// Setup worker directory paths explicitly for the PDF.js CDN engine
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+// Centralized Local PYQ Database Mock Object
+const papersDatabase = {
+    "1": {
+        "maths1": { "midsem": [], "endsem": [], "quiz": [] },
+        "physics": { "midsem": [], "endsem": [], "quiz": [] },
+        "c-prog": { "midsem": [], "endsem": [], "quiz": [] }
+    },
+    "2": {
+        "dsa": {
+            "endsem": [
+                { title: "End-Sem 2022 [May][CSE]", file: "pyqs/semester2/dsa/endsem/dsa-endsem-2022.pdf" },
+                { title: "End-Sem 2021 [May][CSE]", file: "pyqs/semester2/dsa/endsem/dsa-endsem-2021.pdf" }
+            ],
+            "midsem": [],
+            "quiz": []
+        },
+        "python": { "midsem": [], "endsem": [], "quiz": [] },
+        "digital-electronics": { "midsem": [], "endsem": [], "quiz": [] },
+        "maths2": { "midsem": [], "endsem": [], "quiz": [] }
+    },
+    "3": {
+        "dbms": { "midsem": [], "endsem": [], "quiz": [] },
+        "discrete-structures": { "midsem": [], "endsem": [], "quiz": [] },
+        "oop": { "midsem": [], "endsem": [], "quiz": [] }
+    }
+};
+
+const humanReadableNames = {
+    "maths1": "Advanced Engineering Mathematics 1",
+    "physics": "Physics for Computer Sciences",
+    "c-prog": "Programming in C",
+    "dsa": "Data Structures and Algorithms (DSA)",
+    "python": "Python Programming",
+    "digital-electronics": "Digital Electronics",
+    "maths2": "Advanced Engineering Mathematics 2",
+    "dbms": "Database Management System (DBMS)",
+    "discrete-structures": "Discrete Mathematical Structures",
+    "oop": "Object-Oriented Programming (OOP)"
+};
+
+const examTypeLabels = {
+    "midsem": "Mid Semester Papers",
+    "endsem": "End Semester Papers",
+    "quiz": "Quiz & Class Tests"
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const sem = params.get('semester');
+    const sub = params.get('subject');
+    const type = params.get('type');
+
+    const subjectLabel = humanReadableNames[sub] || (sub ? sub.toUpperCase() : "Subject");
+    const examLabel = examTypeLabels[type] || (type ? type.toUpperCase() : "Papers");
+
+    document.getElementById('pageHeading').innerText = subjectLabel;
+    document.getElementById('pageSubtitle').innerText = `Semester ${sem || '--'} • ${examLabel}`;
+    document.getElementById('backBtn').href = `subject.html?semester=${sem}&subject=${sub}`;
+
+    const carouselContainer = document.getElementById('papersCarousel');
+
+    try {
+        const availablePapers = papersDatabase[sem][sub][type];
+        
+        if (!availablePapers || availablePapers.length === 0) {
+            showNoPapers();
+        } else {
+            availablePapers.forEach((paper, index) => {
+                const card = document.createElement('a');
+                card.href = paper.file;
+                card.className = 'paper-card';
+                card.target = '_blank';
+                card.id = `card-${index}`;
+
+                card.innerHTML = `
+                    <div class="loading-placeholder" id="loader-${index}">
+                        <span class="spinner">Rendering Preview...</span>
+                    </div>
+                    <div class="card-details">
+                        <h3>${paper.title}</h3>
+                        <span>Open PDF ➔</span>
+                    </div>
+                `;
+                
+                carouselContainer.appendChild(card);
+
+                // Pass the card target details down cleanly
+                generatePDFThumbnail(paper.file, index);
+            });
+        }
+    } catch (error) {
+        showNoPapers();
+    }
+});
+
+async function generatePDFThumbnail(pdfUrl, cardIndex) {
+    const loader = document.getElementById(`loader-${cardIndex}`);
+    const card = document.getElementById(`card-${cardIndex}`);
+
+    try {
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+        const page = await pdf.getPage(1);
+        
+        // FIX: Create an isolated canvas in memory specifically for this individual card instance
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const viewport = page.getViewport({ scale: 1.0 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+
+        // Render the PDF to our unique offscreen canvas
+        await page.render(renderContext).promise;
+        const imageUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+        // Apply background style update directly
+        card.style.backgroundImage = `url('${imageUrl}')`;
+        if(loader) loader.style.display = 'none';
+
+    } catch (error) {
+        console.warn(`PDF.js loading collision/restriction handled on card ${cardIndex}. Applying elegant fallback layout.`);
+        
+        if(loader) {
+            loader.innerHTML = `
+                <div style="text-align:center; opacity: 0.15; transform: translateY(-20px);">
+                    <svg width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                    </svg>
+                </div>
+            `;
+            card.style.background = 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(11, 15, 25, 0.6) 100%)';
+        }
+    }
+}
+
+function showNoPapers() {
+    const wrapper = document.getElementById('carouselWrapper');
+    wrapper.innerHTML = `<div class="no-data">No papers uploaded yet.</div>`;
+}
+    </script>
+</body>
+</html>
