@@ -223,36 +223,40 @@
         </header>
 
         <!-- Subjects Container List -->
-        <main class="subject-container">
-            
-            <!-- Subject 1 -->
-            <div class="subject-card" data-subject="dbms">
-                <div class="subject-info">
-                    <h3>Database Management System (DBMS)</h3>
-                    <p>Data Infrastructure & Management</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+       <main class="subject-container">
+    <!-- Subject 1 -->
+    <a href="subject.html?semester=3&subject=dbms" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Database Management System (DBMS)</h3>
+                <p>Data Infrastructure & Management</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 2 -->
-            <div class="subject-card" data-subject="discrete-structures">
-                <div class="subject-info">
-                    <h3>Discrete Mathematical Structures</h3>
-                    <p>Computational Logic Mathematics</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 2 -->
+    <a href="subject.html?semester=3&subject=discrete-structures" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Discrete Mathematical Structures</h3>
+                <p>Computational Logic Mathematics</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 3 -->
-            <div class="subject-card" data-subject="oop">
-                <div class="subject-info">
-                    <h3>Object-Oriented Programming (OOP)</h3>
-                    <p>Software Architecture & Design Patterns</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 3 -->
+    <a href="subject.html?semester=3&subject=oop" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Object-Oriented Programming (OOP)</h3>
+                <p>Software Architecture & Design Patterns</p>
             </div>
-
-        </main>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
+</main>
 
         <!-- Global Action Row Element -->
         <div class="btn-container">
@@ -266,14 +270,7 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.subject-card');
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    alert(`Fetching papers for ${card.querySelector('h3').innerText}...`);
-                });
-            });
-        });
+        
     </script>
 </body>
 </html>

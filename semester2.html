@@ -223,46 +223,51 @@
         </header>
 
         <!-- Subjects Container List -->
-        <main class="subject-container">
-            
-            <!-- Subject 1 -->
-            <div class="subject-card" data-subject="dsa">
-                <div class="subject-info">
-                    <h3>Data Structures and Algorithms (DSA)</h3>
-                    <p>Core Computing Foundations</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+       <main class="subject-container">
+    <!-- Subject 1 -->
+    <a href="subject.html?semester=2&subject=dsa" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Data Structures and Algorithms (DSA)</h3>
+                <p>Core Computing Foundations</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 2 -->
-            <div class="subject-card" data-subject="python">
-                <div class="subject-info">
-                    <h3>Python Programming</h3>
-                    <p>Application Development Module</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 2 -->
+    <a href="subject.html?semester=2&subject=python" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Python Programming</h3>
+                <p>Application Development Module</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 3 -->
-            <div class="subject-card" data-subject="digital-electronics">
-                <div class="subject-info">
-                    <h3>Digital Electronics</h3>
-                    <p>Hardware & System Architecture</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 3 -->
+    <a href="subject.html?semester=2&subject=digital-electronics" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Digital Electronics</h3>
+                <p>Hardware & System Architecture</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 4 -->
-            <div class="subject-card" data-subject="maths-2">
-                <div class="subject-info">
-                    <h3>Advanced Engineering Mathematics 2</h3>
-                    <p>Advanced Analytical Mathematics</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 4 -->
+    <a href="subject.html?semester=2&subject=maths2" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Advanced Engineering Mathematics 2</h3>
+                <p>Advanced Analytical Mathematics</p>
             </div>
-
-        </main>
-
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
+</main>
         <!-- Global Action Row Element -->
         <div class="btn-container">
             <a href="index.html" class="btn-back">← Back to Home</a>
@@ -275,14 +280,7 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.subject-card');
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    alert(`Fetching papers for ${card.querySelector('h3').innerText}...`);
-                });
-            });
-        });
+       
     </script>
 </body>
 </html>

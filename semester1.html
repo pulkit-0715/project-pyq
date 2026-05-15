@@ -224,36 +224,39 @@
 
         <!-- Subjects Container List -->
         <main class="subject-container">
-            
-            <!-- Subject 1 -->
-            <div class="subject-card" data-subject="maths">
-                <div class="subject-info">
-                    <h3>Advanced Engineering Mathematics 1</h3>
-                    <p>Core Engineering Module</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 1 -->
+    <a href="subject.html?semester=1&subject=maths1" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Advanced Engineering Mathematics 1</h3>
+                <p>Core Engineering Module</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 2 -->
-            <div class="subject-card" data-subject="physics">
-                <div class="subject-info">
-                    <h3>Physics for Computer Sciences</h3>
-                    <p>Applied Sciences Module</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 2 -->
+    <a href="subject.html?semester=1&subject=physics" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Physics for Computer Sciences</h3>
+                <p>Applied Sciences Module</p>
             </div>
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
 
-            <!-- Subject 3 -->
-            <div class="subject-card" data-subject="c-prog">
-                <div class="subject-info">
-                    <h3>Programming in C</h3>
-                    <p>Computing Foundations Module</p>
-                </div>
-                <div class="arrow-icon">➔</div>
+    <!-- Subject 3 -->
+    <a href="subject.html?semester=1&subject=c-prog" style="text-decoration: none;">
+        <div class="subject-card">
+            <div class="subject-info">
+                <h3>Programming in C</h3>
+                <p>Computing Foundations Module</p>
             </div>
-
-        </main>
-
+            <div class="arrow-icon">➔</div>
+        </div>
+    </a>
+</main>
         <!-- Global Action Row Element -->
         <div class="btn-container">
             <a href="index.html" class="btn-back">← Back to Home</a>
@@ -267,19 +270,7 @@
 
     <!-- Simple Vanilla Navigation Handling Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.subject-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const subject = card.getAttribute('data-subject');
-                    alert(`Fetching papers for ${card.querySelector('h3').innerText}...`);
-                    // Future routing target integration: 
-                    // window.location.href = `/papers/${subject}.html`;
-                });
-            });
-        });
-    
+
         
     </script>
 </body>
