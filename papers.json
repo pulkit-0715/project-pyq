@@ -1,36 +1,44 @@
 {
-    "semester1": {
-        "aem": {
+    "1": {
+        "c-prog": {},
+        "maths1": {
             "endsem": [
                 {
                     "title": "aem-endsem-2025",
-                    "file": "pyqs/semester1/aem/endsem/aem-endsem-2025.pdf"
+                    "file": "pyqs/1/maths1/endsem/aem-endsem-2025.pdf"
                 }
             ],
             "midsem": [],
             "quiz": []
-        }
-    },
-    "semester2": {
-        "aem2": {
-            "endsem": [],
-            "midsem": [],
-            "quizs": []
         },
+        "physics": {}
+    },
+    "2": {
+        "digital-electronics": {},
         "dsa": {
             "endsem": [
                 {
                     "title": "dsa-endsem-2021",
-                    "file": "pyqs/semester2/dsa/endsem/dsa-endsem-2021.pdf"
+                    "file": "pyqs/2/dsa/endsem/dsa-endsem-2021.pdf"
                 },
                 {
                     "title": "dsa-endsem-2022",
-                    "file": "pyqs/semester2/dsa/endsem/dsa-endsem-2022.pdf"
+                    "file": "pyqs/2/dsa/endsem/dsa-endsem-2022.pdf"
                 }
             ],
             "midsem": [],
             "quizs": []
-        }
+        },
+        "maths2": {
+            "endsem": [],
+            "midsem": [],
+            "quizs": []
+        },
+        "python": {}
     },
-    "semester3": {}
+    "3": {
+        "dbms": {},
+        "discrete-structures": {},
+        "oop": {}
+    }
 }
