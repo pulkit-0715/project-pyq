@@ -28,7 +28,12 @@
     },
     "2": {
         "digital-electronics": {
-            "endsem": [],
+            "endsem": [
+                {
+                    "title": "de-endsem-2026",
+                    "file": "pyqs/2/digital-electronics/endsem/de-endsem-2026.pdf"
+                }
+            ],
             "midsem": [],
             "quizs": []
         },
@@ -47,7 +52,12 @@
             "quizs": []
         },
         "maths2": {
-            "endsem": [],
+            "endsem": [
+                {
+                    "title": "aem2-endsem-2026",
+                    "file": "pyqs/2/maths2/endsem/aem2-endsem-2026.pdf"
+                }
+            ],
             "midsem": [],
             "quizs": []
         },
